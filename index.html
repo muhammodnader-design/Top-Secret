@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CONGRATULATIONS! You Have Been Selected!</title>
+<style>
+  :root {
+    --red: #e11d1d;
+    --red-dark: #8f0b0b;
+    --gold: #ffd21f;
+    --navy: #0b1a4a;
+    --green: #1fbf4a;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: repeating-linear-gradient(45deg, #1a3a9c 0 20px, #16338a 20px 40px);
+    color: #fff;
+    text-align: center;
+    min-height: 100vh;
+  }
+
+  .alert-bar {
+    background: var(--red);
+    padding: 0.6rem 1rem;
+    font-weight: 700;
+    font-size: 0.95rem;
+    animation: flash 1s steps(2, start) infinite;
+  }
+  @keyframes flash { 50% { background: #ff6a00; } }
+
+  .wrap { max-width: 560px; margin: 0 auto; padding: 1.2rem 1rem 3rem; }
+
+  h1 {
+    margin: 0.8rem 0 0.2rem;
+    font-size: clamp(1.8rem, 7vw, 2.8rem);
+    color: var(--gold);
+    text-shadow: 2px 2px 0 #000;
+    line-height: 1.1;
+  }
+  .sub { font-size: 1.15rem; margin: 0.3rem 0 1rem; }
+  .sub b { color: var(--gold); }
+
+  .prize {
+    background: #fff;
+    color: #111;
+    border: 5px solid var(--gold);
+    border-radius: 14px;
+    padding: 1rem;
+    margin: 1rem 0;
+    box-shadow: 0 0 25px rgba(255, 210, 31, 0.7);
+  }
+  .prize .emoji { font-size: 4.5rem; line-height: 1; }
+  .prize h2 { margin: 0.3rem 0; font-size: 1.5rem; color: var(--navy); }
+  .prize .was { text-decoration: line-through; color: #888; }
+  .prize .now { color: var(--green); font-weight: 900; font-size: 1.4rem; }
+
+  .timer-box { margin: 1rem 0; }
+  .timer-label { font-size: 0.95rem; opacity: 0.95; }
+  .timer {
+    display: inline-block;
+    margin-top: 0.3rem;
+    background: #000;
+    color: #ff3b3b;
+    font: 700 2.4rem "Courier New", monospace;
+    padding: 0.2rem 1rem;
+    border-radius: 8px;
+    letter-spacing: 0.08em;
+  }
+
+  .stock { font-size: 1rem; margin: 0.6rem 0 1.4rem; }
+  .stock b { color: var(--gold); }
+  .bar { height: 14px; background: #333; border-radius: 8px; overflow: hidden; margin: 0.4rem auto 0; max-width: 360px; }
+  .bar span { display: block; height: 100%; width: 96%; background: linear-gradient(90deg, #ff3b3b, #ff9a00); }
+
+  .plate {
+    display: inline-block;
+    padding: 1rem;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #3a3e46, #202226);
+    box-shadow: 0 12px 30px rgba(0,0,0,.6), inset 0 2px 4px rgba(255,255,255,.08);
+  }
+  a.big-red-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: clamp(190px, 58vw, 280px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #ff5a5a 0%, var(--red) 45%, var(--red-dark) 100%);
+    color: #fff;
+    font-size: clamp(1.3rem, 5.5vw, 2rem);
+    font-weight: 900;
+    text-decoration: none;
+    text-transform: uppercase;
+    line-height: 1.15;
+    padding: 1rem;
+    text-shadow: 0 2px 6px rgba(0,0,0,.5);
+    box-shadow: 0 10px 0 #5e0606, 0 18px 30px rgba(0,0,0,.6), 0 0 50px rgba(225,29,29,.7);
+    transition: transform .08s ease, box-shadow .08s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  a.big-red-button:active {
+    transform: translateY(8px);
+    box-shadow: 0 2px 0 #5e0606, 0 6px 14px rgba(0,0,0,.6), 0 0 40px rgba(225,29,29,.7);
+  }
+  a.big-red-button:focus-visible { outline: 4px solid #fff; outline-offset: 8px; }
+  @media (prefers-reduced-motion: no-preference) {
+    a.big-red-button { animation: shake 1.6s ease-in-out infinite; }
+    @keyframes shake {
+      0%, 100% { transform: rotate(0); }
+      10% { transform: rotate(-2deg) scale(1.03); }
+      20% { transform: rotate(2deg) scale(1.03); }
+      30% { transform: rotate(0); }
+    }
+  }
+
+  .ticker {
+    margin-top: 2rem;
+    background: rgba(0,0,0,.45);
+    border-radius: 10px;
+    padding: 0.8rem;
+    font-size: 0.95rem;
+    min-height: 3.2rem;
+  }
+  .ticker b { color: var(--green); }
+
+  .badges { margin-top: 1.4rem; display: flex; gap: .6rem; justify-content: center; flex-wrap: wrap; font-size: .8rem; }
+  .badges span { background: #fff; color: #111; border-radius: 6px; padding: .35rem .6rem; font-weight: 700; }
+
+  .tiny { margin-top: 1.6rem; font-size: .7rem; opacity: .55; line-height: 1.4; }
+</style>
+</head>
+<body>
+
+<div class="alert-bar">⚠ ATTENTION: Your device was randomly selected today ⚠</div>
+
+<div class="wrap">
+  <h1>🎉 CONGRATULATIONS! 🎉</h1>
+  <p class="sub">You are our <b>1,000,000th visitor</b>!<br>You have been selected to receive a FREE gift.</p>
+
+  <div class="prize">
+    <div class="emoji">📱</div>
+    <h2>BRAND NEW PHONE</h2>
+    <div><span class="was">Value: $1,299</span> &nbsp; <span class="now">YOUR PRICE: $0.00</span></div>
+  </div>
+
+  <div class="timer-box">
+    <div class="timer-label">This offer expires in:</div>
+    <div class="timer" id="timer">04:59</div>
+  </div>
+
+  <div class="stock">
+    Only <b id="left">2</b> prizes left today!
+    <div class="bar"><span></span></div>
+  </div>
+
+  <div class="plate">
+    <a class="big-red-button"
+       href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+       target="_blank"
+       rel="noopener noreferrer">Claim<br>Your Prize<br>Now!</a>
+  </div>
+
+  <div class="ticker" id="ticker">Loading recent winners…</div>
+
+  <div class="badges">
+    <span>✔ 100% FREE</span>
+    <span>✔ NO CREDIT CARD</span>
+    <span>✔ VERIFIED WINNER</span>
+    <span>🔒 SECURE SITE</span>
+  </div>
+
+  <p class="tiny">This is a parody page. Real prizes never make you hurry, never pick you for a contest you didn't enter, and never charge you to claim them.</p>
+</div>
+
+<script>
+  // Countdown that resets itself, like the real thing
+  var total = 299;
+  var timerEl = document.getElementById('timer');
+  function tick() {
+    var m = String(Math.floor(total / 60)).padStart(2, '0');
+    var s = String(total % 60).padStart(2, '0');
+    timerEl.textContent = m + ':' + s;
+    total = total > 0 ? total - 1 : 299;
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  // Fake winners ticker
+  var names = ['Jessica from Texas', 'Mohamed from Cairo', 'Liam from Toronto', 'Sofia from Madrid', 'Kevin from Ohio', 'Aisha from Dubai'];
+  var tickerEl = document.getElementById('ticker');
+  function winner() {
+    var n = names[Math.floor(Math.random() * names.length)];
+    var mins = Math.floor(Math.random() * 4) + 1;
+    tickerEl.innerHTML = '🏆 <b>' + n + '</b> just claimed a prize ' + mins + ' min ago!';
+  }
+  winner();
+  setInterval(winner, 3500);
+
+  // Fake dwindling stock
+  var left = document.getElementById('left');
+  setInterval(function () { left.textContent = Math.random() > .5 ? '2' : '1'; }, 6000);
+</script>
+</body>
+</html>
